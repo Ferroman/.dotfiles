@@ -3,17 +3,18 @@ local M = {}
 M.treesitter = {
   ensure_installed = {
     "vim",
-    "lua",
     "html",
+    "toml",
     "css",
-    "javascript",
-    "typescript",
-    "tsx",
-    "c",
     "markdown",
     "markdown_inline",
+    "tsx",
+    "c",
+    "python",
+    "javascript",
+    "typescript",
     "bash",
-    "toml"
+    "lua",
   },
   indent = {
     enable = true,
