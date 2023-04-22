@@ -163,13 +163,15 @@ local plugins = {
     }
    }
   },
-  -- {
-  --   'sindrets/diffview.nvim',
-  --   init = function()
-  --     require("core.utils").lazy_load "diffview.nvim"
-  --   end,
-  --   dependencies = {'nvim-lua/plenary.nvim'},
-  -- },
+  -- (EXPERIMENTAL USE) Single tabpage interface for easily cycling through diffs
+  {
+    'sindrets/diffview.nvim',
+    init = function()
+      require("core.utils").lazy_load "diffview.nvim"
+    end,
+    dependencies = {'nvim-lua/plenary.nvim'},
+  },
+  -- (EXPERIMENTAL USE) Modern folding
   {
     'kevinhwang91/nvim-ufo',
     dependencies = {'kevinhwang91/promise-async'},
@@ -181,13 +183,71 @@ local plugins = {
       require("ufo").setup()
     end,
   },
+  -- (VERY EXPERIMENTAL) modern UI notifications
+  -- looks like it conflicts wit some lspsaga features even with lsp disabled
   {
-   'TimUntersberger/neogit',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    "folke/noice.nvim",
+    enabled = false,
     init = function()
-      require("core.utils").lazy_load "neogit"
+      require("noice").setup({
+        cmdline = {
+          enabled = true,
+          view = 'cmdline'
+        },
+        messages = {
+          -- NOTE: If you enable messages, then the cmdline is enabled automatically.
+          -- This is a current Neovim limitation.
+          enabled = true, -- enables the Noice messages UI
+          view = "mini", -- default view for messages
+          view_error = "notify", -- view for errors
+          view_warn = "notify", -- view for warnings
+          view_history = "messages", -- view for :messages
+          view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+        },
+        -- do not use Noice for LSP features, but left the progress
+        lsp = {
+          enabled = false,
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+            ["vim.lsp.util.stylize_markdown"] = false,
+            ["cmp.entry.get_documentation"] = false,
+          },
+          hover = {
+            enabled = false
+          },
+          signature = {
+            enabled = false
+          }
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          bottom_search = true, -- use a classic bottom cmdline for search
+          command_palette = false, -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false, -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false, -- add a border to hover docs and signature help
+        },
+      })
     end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    },
   },
+  -- EXPERIMENTAL: show images in md files
+  { 'edluffy/hologram.nvim',
+    ft = "markdown",
+    config = function()
+      require('hologram').setup{
+        auto_display = true -- WIP automatic markdown image display, may be prone to breaking
+      }
+    end
+  },
+  -- (LOCAL DEVELOPMENT)
   {
     dir = "~/p/nvim/ygor.nvim",
     init = function()
