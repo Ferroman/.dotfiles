@@ -20,7 +20,20 @@ end
 
 vim.diagnostic.config({
   virtual_text = false,
-  virtual_lines = true
+  virtual_lines = { only_current_line = true }
 })
--- 
--- lspconfig.pyright.setup { blabla}
+
+vim.cmd [[
+  hi DiagnosticUnderlineError gui=undercurl
+  hi DiagnosticUnderlineWarn gui=undercurl
+]]
+
+-- does not support go to definition
+-- lspconfig.ruff_lsp.setup {
+--   init_options = {
+--     settings = {
+--       -- Any extra CLI arguments for `ruff` go here.
+--       args = {},
+--     }
+--   }
+-- }
