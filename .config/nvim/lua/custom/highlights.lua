@@ -7,16 +7,20 @@ local M = {}
 ---@type Base46HLGroupsList
 M.override = {
   Comment = {
-    italic = true,
+    italic = true
   },
   FoldColumn = {
     fg = "light_grey",
-  }
+  },
+  DiagnosticError = {
+    undercurl = false,
+    underline = false
+  },
 }
 
 ---@type HLTable
 M.add = {
-  NvimTreeOpenedFolderName = { fg = "green", bold = true },
+  -- NvimTreeOpenedFolderName = { fg = "green", bold = true },
 }
 
 return M
