@@ -3,7 +3,6 @@ local overrides = require("custom.configs.overrides")
 ---@type NvPluginSpec[]
 local plugins = {
 
-  -- Override plugin definition options
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -37,7 +36,8 @@ local plugins = {
     opts = overrides.nvimtree,
   },
 
-  -- Install a plugin
+  -- Install plugins
+  -- escape with jj and jk with no frustrations
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
@@ -53,7 +53,8 @@ local plugins = {
       require("core.utils").lazy_load "vim-wakatime"
     end,
   },
-  -- git commands support fugitive
+
+  -- git commands support
   {
     "tpope/vim-fugitive",
 
@@ -61,6 +62,7 @@ local plugins = {
       require("core.utils").lazy_load "vim-fugitive"
     end,
   },
+
   -- save session automatically
   {"tpope/vim-obsession"},
   -- keep different session per directory
@@ -69,13 +71,26 @@ local plugins = {
     dependencies = {"tpope/vim-obsession"},
     lazy = false
   },
+  -- save files automatically on mode change
+  {
+    "Pocco81/auto-save.nvim",
+    opts = {
+      trigger_events = {"InsertLeave"}, -- removes TextChanged event
+    },
+    lazy = false -- enabled by default for all files
+  },
+
   -- Neovim lsp enhance plugin
   {
     "glepnir/lspsaga.nvim",
     event = "LspAttach",
     config = function()
       require("lspsaga").setup({
+        symbol_in_winbar = {
+          enable = false, -- this feature make scrolling slow
+        },
         ui = {
+          title = true,
           code_action = ""
         }
       })
@@ -86,6 +101,7 @@ local plugins = {
       {"nvim-treesitter/nvim-treesitter"}
     }
   },
+  -- render diagnostics using virtual lines
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
      event = "LspAttach",
@@ -93,14 +109,7 @@ local plugins = {
        require("lsp_lines").setup()
      end,
   },
-  -- save files automatically on mode change
-  {
-    "Pocco81/auto-save.nvim",
-    opts = {
-      trigger_events = {"InsertLeave"}, -- removes TextChanged event
-    },
-    lazy = false -- enabled by default for all files
-  },
+  -- fuzzy finder
   {
    "nvim-telescope/telescope.nvim",
    opts = {
@@ -129,6 +138,7 @@ local plugins = {
       },
     },
    },
+  -- a file explorer
   {
    "nvim-tree/nvim-tree.lua",
    opts = {
