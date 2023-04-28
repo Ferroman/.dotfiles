@@ -17,6 +17,17 @@ local sources = {
 
   -- cpp
   b.formatting.clang_format,
+
+  -- js, typescript
+  -- b.code_actions.eslint,
+  -- b.formatting.eslint,
+
+  -- b.diagnostics.eslint.with({
+  --     -- Force the severity to be HINT
+  --     diagnostics_postprocess = function(diagnostic)
+  --       diagnostic.severity = vim.diagnostic.severity.WARN
+  --     end,
+  --   }),
 }
 
 null_ls.setup {

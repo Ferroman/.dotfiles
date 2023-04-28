@@ -2,17 +2,18 @@ local overrides = require("custom.configs.overrides")
 
 ---@type NvPluginSpec[]
 local plugins = {
-
+  -- LSP servers config
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      -- format & linting
+      -- EXPERIMENTAL: format & linting
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
           require "custom.configs.null-ls"
         end,
       },
+      -- TODO: LSP inlay hints
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -36,6 +37,10 @@ local plugins = {
     opts = overrides.nvimtree,
   },
 
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = overrides.gitsigns,
+  },
   -- Install plugins
   -- escape with jj and jk with no frustrations
   {
@@ -74,9 +79,25 @@ local plugins = {
   -- save files automatically on mode change
   {
     "Pocco81/auto-save.nvim",
-    opts = {
-      trigger_events = {"InsertLeave"}, -- removes TextChanged event
-    },
+    config = function()
+      require("auto-save").setup({
+        -- trigger_events = {"InsertLeave"}, -- removes TextChanged event
+        condition = function(buf)
+            local fn = vim.fn
+            local utils = require("auto-save.utils.data")
+
+            if fn.getbufvar(buf, "&modifiable") == 1
+                and utils.not_in(fn.getbufvar(buf, "&filetype"), {
+                  "gitcommit" -- do not autosave git commit message
+                })
+            then
+                return true -- met condition(s), can save
+            end
+            return false -- can't save
+        end,
+        write_all_buffers = false,
+      })
+    end,
     lazy = false -- enabled by default for all files
   },
 
@@ -242,9 +263,11 @@ local plugins = {
   { 'edluffy/hologram.nvim',
     ft = "markdown",
     config = function()
-      require('hologram').setup{
-        auto_display = true -- WIP automatic markdown image display, may be prone to breaking
-      }
+      if not vim.g.neovide then  -- do not load it in GUI
+        require('hologram').setup{
+          auto_display = true -- WIP automatic markdown image display, may be prone to breaking
+        }
+      end
     end
   },
   -- (LOCAL DEVELOPMENT)
