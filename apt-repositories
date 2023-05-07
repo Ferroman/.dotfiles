@@ -1,0 +1,3 @@
+ppa:fish-shell/release-3
+ppa:neovim-ppa/stable
+'deb https://repo.vivaldi.com/archive/deb/ stable main'
