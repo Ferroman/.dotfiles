@@ -149,3 +149,5 @@ sudo mv *.ttf /usr/local/share/fonts/iosevka-font/.
 
 sudo fc-cache -fv
 
+rm *zip
+
