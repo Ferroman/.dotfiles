@@ -18,13 +18,13 @@ My personal dotfiles that include an aesthetic and feature-rich neovim config
 - [pyenv](https://github.com/pyenv/pyenv) to manage Python version
 
 ---
-[bat](https://github.com/sharkdp/bat) cat clone with wings
-[delta](https://github.com/dandavison/delta) fancy git diff
-[ripgrep](https://github.com/BurntSushi/ripgrep) fast search
-[fzf](https://github.com/junegunn/fzf) fast search
-[fdfind](https://github.com/sharkdp/fd) find files
-[jq](https://stedolan.github.io/jq/) common JSON files parser tool
-[yq](https://github.com/mikefarah/yq) `jq` with cherries
+- [bat](https://github.com/sharkdp/bat) cat clone with wings
+- [delta](https://github.com/dandavison/delta) fancy git diff
+- [ripgrep](https://github.com/BurntSushi/ripgrep) fast search
+- [fzf](https://github.com/junegunn/fzf) fast search
+- [fdfind](https://github.com/sharkdp/fd) find files
+- [jq](https://stedolan.github.io/jq/) common JSON files parser tool
+- [yq](https://github.com/mikefarah/yq) `jq` with cherries
 
 ## Installation
 
