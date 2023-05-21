@@ -184,6 +184,42 @@ local plugins = {
     }
    }
   },
+  -- Better markdown preview 
+  {"ellisonleao/glow.nvim",
+    config = function()
+      require("glow").setup()
+    end,
+    cmd = "Glow"
+  },
+  -- (EXPERIMENTAL USE) AI helper
+  {
+    "Bryley/neoai.nvim",
+    dependencies = {
+        "MunifTanjim/nui.nvim",
+    },
+    cmd = {
+        "NeoAI",
+        "NeoAIOpen",
+        "NeoAIClose",
+        "NeoAIToggle",
+        "NeoAIContext",
+        "NeoAIContextOpen",
+        "NeoAIContextClose",
+        "NeoAIInject",
+        "NeoAIInjectCode",
+        "NeoAIInjectContext",
+        "NeoAIInjectContextCode",
+    },
+    keys = {
+        { "<leader>as", desc = "summarize text" },
+        { "<leader>ag", desc = "generate git message" },
+    },
+    config = function()
+        require("neoai").setup({
+            -- Options go here
+        })
+    end,
+  },
   -- (EXPERIMENTAL USE) Single tabpage interface for easily cycling through diffs
   {
     'sindrets/diffview.nvim',
