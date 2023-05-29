@@ -25,6 +25,7 @@ My personal dotfiles that include an aesthetic and feature-rich neovim config
 - [fdfind](https://github.com/sharkdp/fd) find files
 - [jq](https://stedolan.github.io/jq/) common JSON files parser tool
 - [yq](https://github.com/mikefarah/yq) `jq` with cherries
+- [btop](https://github.com/aristocratos/btop) htop on steroids
 
 ## Installation
 
