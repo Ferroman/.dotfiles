@@ -1,10 +1,9 @@
-vim.o.foldcolumn = '1' -- '0' is not bad
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.o.foldlevelstart = 99
-vim.o.foldenable = false
+vim.opt.swapfile = false -- no need for swapfile with autosave plugin
 
 vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
+
+vim.opt.guifont = { "Iosevka", "h16" }
 -- Auto resize panes when resizing nvim window
 -- autocmd("VimResized", {
 --   pattern = "*",
