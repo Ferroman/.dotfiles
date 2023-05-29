@@ -228,16 +228,39 @@ local plugins = {
     end,
     dependencies = {'nvim-lua/plenary.nvim'},
   },
-  -- (EXPERIMENTAL USE) Modern folding
   {
-    'kevinhwang91/nvim-ufo',
-    dependencies = {'kevinhwang91/promise-async'},
+    "epwalsh/obsidian.nvim",
+    lazy = false, -- enabled by default for all files
     init = function()
-      require("core.utils").lazy_load "nvim-ufo"
+      require("core.utils").lazy_load "obsidian.nvim"
     end,
-
     config = function()
-      require("ufo").setup()
+      require("obsidian").setup({
+        dir = "~/Documents/docs/work/",
+        notes_subdir = "flynotes",
+        disable_frontmatter = true,
+        -- Optional, if you keep daily notes in a separate directory.
+        daily_notes = {
+          folder = "flynotes/dailies",
+        },
+        -- Optional, customize how names/IDs for new notes are created.
+        note_id_func = function(title)
+          -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
+          -- In this case a note with the title 'My new note' will given an ID that looks
+          -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
+          local suffix = ""
+          if title ~= nil then
+            -- If title is given, transform it into valid file name.
+            suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+          else
+            -- If title is ni:l, just add 4 random uppercase letters to the suffix.
+            for _ = 1, 4 do
+              suffix = suffix .. string.char(math.random(65, 90))
+            end
+          end
+          return tostring(os.date("%Y-%m-%d")) .. "-" .. suffix
+        end,
+      })
     end,
   },
   -- EXPERIMENTAL: show images in md files
