@@ -220,13 +220,52 @@ local plugins = {
         })
     end,
   },
-  -- (EXPERIMENTAL USE) Single tabpage interface for easily cycling through diffs
+  -- EXPERIMENTAL: show images in md files
+  -- { 'edluffy/hologram.nvim',
+  --   ft = "markdown",
+  --   config = function()
+  --     if not (vim.g.neovide or vim.g.fvim_loaded) then  -- do not load it in GUI
+  --       require('hologram').setup{
+  --         auto_display = true -- WIP automatic markdown image display, may be prone to breaking
+  --       }
+  --     end
+  --   end
+  -- },
+  -- -----------------------------------
+  -- EDITOR config
   {
-    'sindrets/diffview.nvim',
+    "folke/zen-mode.nvim",
+    lazy = false,
     init = function()
-      require("core.utils").lazy_load "diffview.nvim"
+      require("core.utils").lazy_load "zen-mode.nvim"
     end,
-    dependencies = {'nvim-lua/plenary.nvim'},
+    config = function()
+      require("zen-mode").setup {
+        window = {
+          -- height and width can be:
+          -- * an absolute number of cells when > 1
+          -- * a percentage of the width / height of the editor when <= 1
+          -- * a function that returns the width or the height
+          width = 76, -- width of the Zen window
+          height = 1, -- height of the Zen window
+          options = {
+            signcolumn = "no", -- disable signcolumn
+            number = false, -- disable number column
+            relativenumber = false, -- disable relative numbers
+            cursorline = false, -- disable cursorline
+            cursorcolumn = false, -- disable cursor column
+            foldcolumn = "0", -- disable fold column
+            list = false, -- disable whitespace characters
+          },
+        },
+        plugins = {
+          kitty = {
+            enabled = false,
+            font = "+2", -- font size increment
+          },
+        }
+      }
+    end,
   },
   {
     "epwalsh/obsidian.nvim",
@@ -262,17 +301,14 @@ local plugins = {
         end,
       })
     end,
-  },
-  -- EXPERIMENTAL: show images in md files
-  { 'edluffy/hologram.nvim',
-    ft = "markdown",
-    config = function()
-      if not vim.g.neovide then  -- do not load it in GUI
-        require('hologram').setup{
-          auto_display = true -- WIP automatic markdown image display, may be prone to breaking
-        }
-      end
-    end
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+      -- Optional, for completion.
+      "hrsh7th/nvim-cmp",
+      -- Optional, for search and quick-switch functionality.
+      "nvim-telescope/telescope.nvim",
+    },
   },
   -- (LOCAL DEVELOPMENT)
   {
@@ -281,12 +317,7 @@ local plugins = {
       require("core.utils").lazy_load "ygor.nvim"
     end,
     dev = true
-  }
-  -- To make a plugin not be loaded
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   enabled = false
-  -- },
+  },
 }
 
 return plugins
