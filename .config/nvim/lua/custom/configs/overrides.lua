@@ -15,7 +15,8 @@ M.treesitter = {
     "typescript",
     "bash",
     "lua",
-    "terraform"
+    "terraform",
+    "go"
   },
   indent = {
     enable = true,
