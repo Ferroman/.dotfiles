@@ -49,6 +49,9 @@ M.mason = {
 
     -- docs
     "markdownlint",
+
+    -- go
+    "gopls"
   },
 }
 
@@ -63,6 +66,11 @@ M.nvimtree = {
     icons = {
       show = {
         git = true,
+      },
+      glyphs = {
+        folder = {
+          default = "",
+        }
       },
     },
   },
