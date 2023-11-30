@@ -39,6 +39,9 @@ M.mason = {
     "deno",
     "prettier",
 
+    --python
+    "pyright",
+
     -- c/cpp stuff
     "clangd",
     "clang-format",
@@ -51,7 +54,9 @@ M.mason = {
     "markdownlint",
 
     -- go
-    "gopls"
+    "gopls",
+    --terraformls
+    "terraformls"
   },
 }
 

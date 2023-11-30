@@ -311,12 +311,18 @@ local plugins = {
     },
   },
   -- (LOCAL DEVELOPMENT)
+  -- {
+  --   dir = "~/p/nvim/ygor.nvim",
+  --   init = function()
+  --     require("core.utils").lazy_load "ygor.nvim"
+  --   end,
+  --   dev = true
+  -- },
   {
-    dir = "~/p/nvim/ygor.nvim",
+    dir = "~/p/nvim/prodoc",
     init = function()
-      require("core.utils").lazy_load "ygor.nvim"
-    end,
-    dev = true
+      require("core.utils").lazy_load "prodoc"
+    end
   },
 }
 

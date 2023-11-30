@@ -4,7 +4,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "yamlls", "terraformls", "dockerls", "bashls", "jsonls", "gopls" }
+local servers = { "yamlls", "terraformls", "dockerls", "bashls", "jsonls", "gopls", "pyright"}
 
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
