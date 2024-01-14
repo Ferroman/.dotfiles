@@ -65,7 +65,10 @@ M.nvimtree = {
   git = {
     enable = true,
   },
-
+  diagnostics = {
+    enable = true,
+    show_on_dirs = true,
+  },
   renderer = {
     highlight_git = true,
     icons = {
@@ -75,7 +78,16 @@ M.nvimtree = {
       glyphs = {
         folder = {
           default = "",
-        }
+        },
+        git = {
+          unstaged = "±",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "﹖",
+          deleted = "",
+          ignored = "◌",
+        },
       },
     },
   },
