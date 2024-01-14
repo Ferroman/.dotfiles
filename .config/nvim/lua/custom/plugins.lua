@@ -51,14 +51,6 @@ local plugins = {
     end,
   },
 
-  -- collect statistics
-  {
-    'wakatime/vim-wakatime',
-    init = function()
-      require("core.utils").lazy_load "vim-wakatime"
-    end,
-  },
-
   -- git commands support
   {
     "tpope/vim-fugitive",
@@ -159,67 +151,6 @@ local plugins = {
       },
     },
    },
-  -- a file explorer
-  {
-   "nvim-tree/nvim-tree.lua",
-   opts = {
-     renderer = {
-      icons = {
-        glyphs = {
-          git = {
-            unstaged = "±",
-            staged = "✓",
-            unmerged = "",
-            renamed = "➜",
-            untracked = "﹖",
-            deleted = "",
-            ignored = "◌",
-          },
-        }
-      }
-     },
-    diagnostics = {
-      enable = true,
-      show_on_dirs = true,
-    }
-   }
-  },
-  -- Better markdown preview 
-  {"ellisonleao/glow.nvim",
-    config = function()
-      require("glow").setup()
-    end,
-    cmd = "Glow"
-  },
-  -- (EXPERIMENTAL USE) AI helper
-  {
-    "Bryley/neoai.nvim",
-    dependencies = {
-        "MunifTanjim/nui.nvim",
-    },
-    cmd = {
-        "NeoAI",
-        "NeoAIOpen",
-        "NeoAIClose",
-        "NeoAIToggle",
-        "NeoAIContext",
-        "NeoAIContextOpen",
-        "NeoAIContextClose",
-        "NeoAIInject",
-        "NeoAIInjectCode",
-        "NeoAIInjectContext",
-        "NeoAIInjectContextCode",
-    },
-    keys = {
-        { "<leader>as", desc = "summarize text" },
-        { "<leader>ag", desc = "generate git message" },
-    },
-    config = function()
-        require("neoai").setup({
-            -- Options go here
-        })
-    end,
-  },
   -- EXPERIMENTAL: show images in md files
   -- { 'edluffy/hologram.nvim',
   --   ft = "markdown",
@@ -233,83 +164,6 @@ local plugins = {
   -- },
   -- -----------------------------------
   -- EDITOR config
-  {
-    "folke/zen-mode.nvim",
-    lazy = false,
-    init = function()
-      require("core.utils").lazy_load "zen-mode.nvim"
-    end,
-    config = function()
-      require("zen-mode").setup {
-        window = {
-          -- height and width can be:
-          -- * an absolute number of cells when > 1
-          -- * a percentage of the width / height of the editor when <= 1
-          -- * a function that returns the width or the height
-          width = 76, -- width of the Zen window
-          height = 1, -- height of the Zen window
-          options = {
-            signcolumn = "no", -- disable signcolumn
-            number = false, -- disable number column
-            relativenumber = false, -- disable relative numbers
-            cursorline = false, -- disable cursorline
-            cursorcolumn = false, -- disable cursor column
-            foldcolumn = "0", -- disable fold column
-            list = false, -- disable whitespace characters
-          },
-        },
-        plugins = {
-          kitty = {
-            enabled = false,
-            font = "+2", -- font size increment
-          },
-        }
-      }
-    end,
-  },
-  {
-    "epwalsh/obsidian.nvim",
-    lazy = false, -- enabled by default for all files
-    init = function()
-      require("core.utils").lazy_load "obsidian.nvim"
-    end,
-    config = function()
-      require("obsidian").setup({
-        dir = "~/Documents/docs/work/",
-        notes_subdir = "flynotes",
-        disable_frontmatter = true,
-        -- Optional, if you keep daily notes in a separate directory.
-        daily_notes = {
-          folder = "flynotes/dailies",
-        },
-        -- Optional, customize how names/IDs for new notes are created.
-        note_id_func = function(title)
-          -- Create note IDs in a Zettelkasten format with a timestamp and a suffix.
-          -- In this case a note with the title 'My new note' will given an ID that looks
-          -- like '1657296016-my-new-note', and therefore the file name '1657296016-my-new-note.md'
-          local suffix = ""
-          if title ~= nil then
-            -- If title is given, transform it into valid file name.
-            suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
-          else
-            -- If title is ni:l, just add 4 random uppercase letters to the suffix.
-            for _ = 1, 4 do
-              suffix = suffix .. string.char(math.random(65, 90))
-            end
-          end
-          return tostring(os.date("%Y-%m-%d")) .. "-" .. suffix
-        end,
-      })
-    end,
-    dependencies = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-      -- Optional, for completion.
-      "hrsh7th/nvim-cmp",
-      -- Optional, for search and quick-switch functionality.
-      "nvim-telescope/telescope.nvim",
-    },
-  },
   -- (LOCAL DEVELOPMENT)
   -- {
   --   dir = "~/p/nvim/ygor.nvim",
@@ -318,12 +172,12 @@ local plugins = {
   --   end,
   --   dev = true
   -- },
-  {
-    dir = "~/p/nvim/prodoc",
-    init = function()
-      require("core.utils").lazy_load "prodoc"
-    end
-  },
+  -- {
+  --   dir = "~/p/nvim/prodoc",
+  --   init = function()
+  --     require("core.utils").lazy_load "prodoc"
+  --   end
+  -- },
 }
 
 return plugins
