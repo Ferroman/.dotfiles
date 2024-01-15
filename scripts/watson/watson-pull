@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd /home/bf/.config/watson || exit ; git pull; cd - || exit

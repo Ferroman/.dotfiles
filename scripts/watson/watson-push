@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd /home/bf/.config/watson || exit ; git add . ; git commit -m "watson:update:frames" ; git push; cd - || exit
