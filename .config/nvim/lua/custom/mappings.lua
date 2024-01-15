@@ -37,6 +37,15 @@ M.telescope_custom = {
     ["<leader>fs"] = { "<cmd> Telescope grep_string <CR>", "search word under cursor" },
   },
 }
--- more keybinds!
+
+M.spectre = {
+  n = {
+    ["<leader>S"] = { '<cmd>lua require("spectre").toggle()<CR>', "Toggle Spectre" },
+    ["<leader>sw"] = { '<esc><cmd>lua require("spectre").open_visual()<CR>', "search word under cursor" },
+ },
+  v = {
+    ["<leader>sw"] = { '<esc><cmd>lua require("spectre").open_visual()<CR>', "search word under cursor" },
+  },
+}
 
 return M

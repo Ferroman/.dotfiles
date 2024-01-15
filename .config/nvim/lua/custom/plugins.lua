@@ -51,6 +51,13 @@ local plugins = {
     end,
   },
 
+  {
+    'ActivityWatch/aw-watcher-vim',
+    lazy = false
+    -- init = function()
+    --   require("core.utils").lazy_load "aw-watcher-vim"
+    -- end,
+  },
   -- git commands support
   {
     "tpope/vim-fugitive",
@@ -62,6 +69,7 @@ local plugins = {
 
   -- save session automatically
   {"tpope/vim-obsession"},
+
   -- keep different session per directory
   {
     "dhruvasagar/vim-prosession",
@@ -151,33 +159,39 @@ local plugins = {
       },
     },
    },
-  -- EXPERIMENTAL: show images in md files
-  -- { 'edluffy/hologram.nvim',
-  --   ft = "markdown",
-  --   config = function()
-  --     if not (vim.g.neovide or vim.g.fvim_loaded) then  -- do not load it in GUI
-  --       require('hologram').setup{
-  --         auto_display = true -- WIP automatic markdown image display, may be prone to breaking
-  --       }
-  --     end
-  --   end
-  -- },
-  -- -----------------------------------
-  -- EDITOR config
-  -- (LOCAL DEVELOPMENT)
-  -- {
-  --   dir = "~/p/nvim/ygor.nvim",
-  --   init = function()
-  --     require("core.utils").lazy_load "ygor.nvim"
-  --   end,
-  --   dev = true
-  -- },
-  -- {
-  --   dir = "~/p/nvim/prodoc",
-  --   init = function()
-  --     require("core.utils").lazy_load "prodoc"
-  --   end
-  -- },
+  -- a file explorer
+  {
+   "nvim-tree/nvim-tree.lua",
+   opts = {
+     renderer = {
+      icons = {
+        glyphs = {
+          git = {
+            unstaged = "±",
+            staged = "✓",
+            unmerged = "",
+            renamed = "➜",
+            untracked = "﹖",
+            deleted = "",
+            ignored = "◌",
+          },
+        }
+      }
+     },
+    diagnostics = {
+      enable = true,
+      show_on_dirs = true,
+    }
+   }
+  },
+  -- search and replace
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+    },
+  },
 }
 
 return plugins

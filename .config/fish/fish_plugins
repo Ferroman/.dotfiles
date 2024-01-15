@@ -1,8 +1,11 @@
-aluxian/fish-kube-prompt
-wfxr/forgit
-takaishi/fish-goenv
+jorgebucaran/fisher
 jorgebucaran/nvm.fish
 daenney/pyenv
-PatrickF1/fzf.fish
-/home/bohdanf/p/misk/theme-bfrankovskyi
+patrickf1/fzf.fish
 franciscolourenco/done
+ferroman/theme-bfrankovskyi
+edc/bass
+takaishi/fish-goenv
+rstacruz/fish-asdf
+/home/bf/p/theme-bfrankovskyi
+/home/bf/p/e/theme-bfrankovskyi

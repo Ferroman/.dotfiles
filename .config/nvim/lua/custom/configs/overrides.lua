@@ -16,7 +16,8 @@ M.treesitter = {
     "bash",
     "lua",
     "terraform",
-    "go"
+    "go",
+    "hcl"
   },
   indent = {
     enable = true,
@@ -42,6 +43,8 @@ M.mason = {
     --python
     "pyright",
 
+    --ruby
+    "solargraph",
     -- c/cpp stuff
     "clangd",
     "clang-format",
@@ -53,10 +56,13 @@ M.mason = {
     -- docs
     "markdownlint",
 
-    -- go
+    -- go stuff
     "gopls",
-    --terraformls
-    "terraformls"
+
+    --"terraformls",
+
+    -- json, ts, js
+    "biome"
   },
 }
 
