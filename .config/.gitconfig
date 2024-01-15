@@ -2,13 +2,13 @@
   path = ~/.gitconfig-local
 [core]
   pager = delta
-	editor = nvim
+  editor = nvim
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [commit]
-	gpgsign = true
+  gpgsign = true
 [gpg]
-	program = gpg
+  program = gpg
 [diff]
   colorMoved = default
 [difftool]
@@ -16,7 +16,7 @@
 [difftool "nvimdiff"]
   cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
-	tool = kdiff3
+  tool = kdiff3
   conflictstyle = diff3
 [interactive]
   diffFilter = delta --color-only --features=interactive
