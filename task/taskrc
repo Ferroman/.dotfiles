@@ -48,7 +48,31 @@ context.work=project:work
 uda.priority.values=H,M,,L
 urgency.uda.priority.L.coefficient=0
 urgency.uda.priority..coefficient=1.8
-context=home
 
-report.next.columns=id,urgency,description,due.relative,until.remaining,entry.age,depends,priority,project,tags,recur,scheduled.countdown
-report.next.labels=ID,Urg,Description,Due,Until,Active,Deps,P,Project,Tag,Recur,S                                                             
+#Reformat columns and hide annotations
+report.next.columns=id,urgency,description.count,due.relative,until.remaining,entry.age,depends,priority,project,tags,recur,scheduled.countdown
+report.next.labels=ID,Urg,Description,Due,Until,Active,Deps,P,Project,Tag,Recur,S           
+context=work
+
+# Bugwarrior UDAs
+uda.jiraissuetype.type=string
+uda.jiraissuetype.label=Issue Type
+uda.jirasummary.type=string
+uda.jirasummary.label=Jira Summary
+uda.jiraurl.type=string
+uda.jiraurl.label=Jira URL
+uda.jiradescription.type=string
+uda.jiradescription.label=Jira Description
+uda.jiraid.type=string
+uda.jiraid.label=Jira Issue ID
+uda.jiraestimate.type=numeric
+uda.jiraestimate.label=Estimate
+uda.jirafixversion.type=string
+uda.jirafixversion.label=Fix Version
+uda.jiracreatedts.type=date
+uda.jiracreatedts.label=Created At
+uda.jirastatus.type=string
+uda.jirastatus.label=Jira Status
+uda.jirasubtasks.type=string
+uda.jirasubtasks.label=Jira Subtasks
+# END Bugwarrior UDAs
