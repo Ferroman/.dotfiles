@@ -1,14 +1,9 @@
 gnupg2
 python3
-fzf
-ripgrep
-jq
 tree
 htop
-git
 build-essential
 procps
-curl
 file
 openssh
 openssh-client

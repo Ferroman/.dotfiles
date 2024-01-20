@@ -4,3 +4,8 @@ fish
 imagemagick
 containerd.io
 fdfind
+git
+jq
+fzf
+ripgrep
+curl
