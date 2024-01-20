@@ -40,6 +40,9 @@ M.mason = {
     "deno",
     "prettier",
 
+    -- shell
+    "bash-language-server",
+
     --python
     "pyright",
 
