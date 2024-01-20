@@ -50,14 +50,6 @@ local plugins = {
       require("better_escape").setup()
     end,
   },
-
-  {
-    'ActivityWatch/aw-watcher-vim',
-    lazy = false
-    -- init = function()
-    --   require("core.utils").lazy_load "aw-watcher-vim"
-    -- end,
-  },
   -- git commands support
   {
     "tpope/vim-fugitive",
