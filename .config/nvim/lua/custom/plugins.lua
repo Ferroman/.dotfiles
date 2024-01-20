@@ -1,20 +1,9 @@
 local overrides = require("custom.configs.overrides")
 
----@type NvPluginSpec[]
 local plugins = {
   -- LSP servers config
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      -- EXPERIMENTAL: format & linting
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-          require "custom.configs.null-ls"
-        end,
-      },
-      -- TODO: LSP inlay hints
-    },
     config = function()
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
@@ -42,14 +31,6 @@ local plugins = {
     opts = overrides.gitsigns,
   },
   -- Install plugins
-  -- escape with jj and jk with no frustrations
-  {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
-  },
   -- git commands support
   {
     "tpope/vim-fugitive",
@@ -68,6 +49,7 @@ local plugins = {
     dependencies = {"tpope/vim-obsession"},
     lazy = false
   },
+
   -- save files automatically on mode change
   {
     "Pocco81/auto-save.nvim",
@@ -151,31 +133,6 @@ local plugins = {
       },
     },
    },
-  -- a file explorer
-  {
-   "nvim-tree/nvim-tree.lua",
-   opts = {
-     renderer = {
-      icons = {
-        glyphs = {
-          git = {
-            unstaged = "±",
-            staged = "✓",
-            unmerged = "",
-            renamed = "➜",
-            untracked = "﹖",
-            deleted = "",
-            ignored = "◌",
-          },
-        }
-      }
-     },
-    diagnostics = {
-      enable = true,
-      show_on_dirs = true,
-    }
-   }
-  },
   -- search and replace
   {
     "nvim-pack/nvim-spectre",
@@ -183,6 +140,16 @@ local plugins = {
       -- Required.
       "nvim-lua/plenary.nvim",
     },
+  },
+  -- EXPERIMENTAL
+  -- reformat
+  {
+    "stevearc/conform.nvim",
+    --  for users those who want auto-save conform + lazyloading!
+    -- event = "BufWritePre"
+    config = function()
+      require "custom.configs.conform"
+    end,
   },
 }
 
