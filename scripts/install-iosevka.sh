@@ -3,7 +3,7 @@
 RELEASE="22.0.2"
 
 mkdir /tmp/iosevka-font/$RELEASE
-cd /tmp/iosevka-font/$RELEASE
+cd /tmp/iosevka-font/$RELEASE || exit
 
 wget https://github.com/be5invis/Iosevka/releases/download/v$RELEASE/ttf-iosevka-$RELEASE.zip
 wget https://github.com/be5invis/Iosevka/releases/download/v$RELEASE/ttf-iosevka-aile-$RELEASE.zip
