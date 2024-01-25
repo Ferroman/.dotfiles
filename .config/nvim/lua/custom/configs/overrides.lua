@@ -65,7 +65,11 @@ M.mason = {
     --"terraformls",
 
     -- json, ts, js
-    "biome"
+    "biome",
+
+    -- docker
+    "dockerfile-language-server",
+    "docker-compose-language-service",
   },
 }
 
