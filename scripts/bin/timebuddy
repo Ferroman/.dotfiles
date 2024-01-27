@@ -1,0 +1,88 @@
+#!/usr/bin/env sh
+# Copy of a script
+# https://github.com/whiteinge/dotfiles/blob/master/bin/timebuddy
+#
+# Compare columns of hours in a day across multiple timezones
+#
+# This provides a quick way to compare times across multiple timezones. For
+# example, you need to book a meeting with coworkers in multiple timezones and
+# want to know what daylight hours overlap in each.
+#
+# Example output (when run from Denver):
+#
+# % timebuddy EST5EDT America/New_York UTC Asia/Tokyo Pacific/Chatham
+# Mon  01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23  Mon - America/Denver
+# Mon  03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 00 01  Tue - EST5EDT
+# Mon  03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 00 01  Tue - America/New_York
+# Mon  08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 00 01 02 03 04 05 06  Tue - UTC
+# Mon  17 18 19 20 21 22 23 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15  Tue - Asia/Tokyo
+# Mon  21 22 23 00 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19  Tue - (+1345) Pacific/Chatham
+#
+# Target time zones with a minutes-level offset will display a notice/reminder
+# and the user must do the minutes calculation mentally.
+#
+# Specify a date (accepts any string GNU date will consume; default: 'today'):
+#
+# % timebuddy -d 2022-03-13 UTC America/New_York
+#
+# Pair with a fuzzy-finder to quickly look up timezone formats.
+# E.g.: ftimezone | xargs timebuddy
+#
+# Format inspired by https://www.worldtimebuddy.com
+#
+# Requirements: GNU date, /usr/share/zoneinfo
+
+datestr='today'
+while getopts xhd: opt; do
+    case $opt in
+    d) datestr="$OPTARG";;
+    h) awk 'NR == 1 { next } /^$/ { exit } { print substr($0, 3) }' "$0"
+       exit ;;
+    x) set -x;;
+    esac
+done
+shift $(( OPTIND - 1 ))
+
+localtime="$(readlink /etc/localtime)"
+curzone="${localtime#*zoneinfo/}"
+curoffset="$(TZ="$curzone" date +%z)"
+
+for tgtzone in "$curzone" "$@"; do
+    if [ ! -e "/usr/share/zoneinfo/${tgtzone}" ]; then
+        printf 'Unknown timezone: %s\n' "$tgtzone" 1>&2
+        exit 1
+    fi
+
+    # Generate a line for every hour of the day in the current time zone and
+    # pass to date to convert that hour into the target time zone.
+    printf '%s\n' 00 01 02 03 04 05 06 07 08 09 10 11 12 \
+        13 14 15 16 17 18 19 20 21 22 23 \
+    | xargs -I{} printf 'TZ="%s" %s {}:00 %s\n' \
+        "$curzone" "$datestr" "$curoffset" \
+    | TZ="$tgtzone" date "+${tgtzone} %a %H %z" -f -
+done | awk '
+    # Collapse the per-day output from date into a single line per time zone.
+    { zone=$1; day=$2; hr=$3; offset=$4; }
+
+    lday == "" { lday = day }
+
+    # First line:
+    prev_zone == "" { printf("%s ", lday) }
+    # Continuing current zone:
+    prev_zone != "" && prev_zone == zone { printf(" %s", hr) }
+    # Starting new zone (finish prev zone output):
+    prev_zone != "" && prev_zone != zone {
+        printf("  %s - %s%s\n%s ", rday, show_offset, prev_zone, lday)
+    }
+
+    {
+        # Save values for next loop:
+        rday = day; prev_zone = zone; prev_offset = offset;
+
+        # Some time zones are offset by minutes as well as hours.
+        offset_mins = substr(prev_offset, length(prev_offset) - 1, 2)
+        show_offset = offset_mins == "00" ? "" : "(" prev_offset ") "
+    }
+
+    END { printf("  %s - %s%s\n", rday, show_offset, prev_zone) }
+'
