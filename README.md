@@ -6,16 +6,13 @@ My personal dotfiles that include an aesthetic and feature-rich neovim config
 ---
 - [Pop!_OS](https://pop.system76.com/) as main OS
     - [Homebrew](https://brew.sh) for some installations
-- [Fish](https://fishshell.com/) for shell
-- [NvChad](https://nvchad.com/) (Neovim config) for editor
+        - [Fish](https://fishshell.com/) for shell
+        - [NvChad](https://nvchad.com/) (Neovim config) for editor
 - [kitty](https://sw.kovidgoyal.net/kitty/) for terminal emulator
-- [Iosevka](https://github.com/be5invis/Iosevka) font
+    - [Iosevka](https://github.com/be5invis/Iosevka) font
 
 ---
-- [NVM](https://github.com/nvm-sh/nvm) to manage Node version
-- [goenv](https://github.com/syndbg/goenv) to manage Go version
-- [tfenv](https://github.com/tfutils/tfenv) to manage Terraform version
-- [pyenv](https://github.com/pyenv/pyenv) to manage Python version
+- [asdf](https://asdf-vm.com) to manage runtime versions
 
 ---
 - [bat](https://github.com/sharkdp/bat) cat clone with wings
