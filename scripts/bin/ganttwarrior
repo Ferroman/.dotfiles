@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# WIP - EXPERIMENTAL
+# Print Gantt diagram for completed tasks in Taskwarrior using PlantUML
+#
+# Example usage: scripts/bin/ganttwarrior | xargs -I {} kitty icat --stdin=no --scale-up {}
+#
+# - Show it per project
+# - Print Gantt for specific project undone tasks 
+
+# Default values
+DEFAULT_FILENAME="gantt.png"
+TEMP_DIR="$(mktemp -d)"
+TEMP_PLANTUML="$TEMP_DIR/gantt.puml"
+
+# Get tasks
+# For that I've added new report, see .taskrc
+tasks=$(task gantt-complete 2> /dev/null | tail -n +4 | head -n -2 | tr -d "[]")
+
+# Start PlantUML script
+echo "@startgantt" > "$TEMP_PLANTUML"
+echo "scale 1.5" >> "$TEMP_PLANTUML"
+
+# need to determine project start date dynamically
+echo "Project starts the 2024-01-01" >> "$TEMP_PLANTUML"
+
+# Add tasks to PlantUML 
+while IFS= read -r line; do
+    read -r id start_date end_date description <<< "$line"
+    # Format and add each task to the PlantUML script
+    echo "[$description] as [$id] starts $start_date and ends $end_date" >> "$TEMP_PLANTUML"
+done <<< "$tasks"
+
+# End PlantUML script
+echo "@endgantt" >> "$TEMP_PLANTUML"
+
+# Generate Gantt chart using PlantUML
+plantuml "$TEMP_PLANTUML" -o "$TEMP_DIR" -tpng -darkmode
+
+# output generated file path
+echo "$TEMP_DIR/$DEFAULT_FILENAME"

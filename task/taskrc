@@ -40,6 +40,8 @@ hooks.location=~/.config/task/hooks
 #include solarized-light-256.theme
 #include no-color.theme
 
+color.blocking=black on gray21 # from default color15 (white) because is too contrast
+
 news.version=2.6.0
 
 context.home=project.hasnt:work
@@ -52,7 +54,7 @@ urgency.uda.priority..coefficient=1.8
 #Reformat columns and hide annotations
 report.next.columns=id,urgency,description.count,due.relative,until.remaining,entry.age,depends,priority,project,tags,recur,scheduled.countdown
 report.next.labels=ID,Urg,Description,Due,Until,Active,Deps,P,Project,Tag,Recur,S           
-context=work
+context=home
 
 # Bugwarrior UDAs
 uda.jiraissuetype.type=string
@@ -76,3 +78,7 @@ uda.jirastatus.label=Jira Status
 uda.jirasubtasks.type=string
 uda.jirasubtasks.label=Jira Subtasks
 # END Bugwarrior UDAs
+report.gantt-complete.description=Output for Gantt generation
+report.gantt-complete.columns=uuid.short,entry,end,description.count
+report.gantt-complete.labels=
+report.gantt-complete.filter=status:completed
