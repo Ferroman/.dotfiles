@@ -1168,6 +1168,18 @@
             }
           }
         }
+      },
+      "kubeprompt": {
+        "version": "0.4.0",
+        "bottle": false
+      }
+    },
+    "tap": {
+      "jlesquembre/kubeprompt": {
+        "revision": "2362332d0e14b9f9d972dded91a11e2c72ed8fe0",
+        "options": {
+          "clone_target": "https://github.com/jlesquembre/kubeprompt/"
+        }
       }
     }
   },

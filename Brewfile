@@ -41,6 +41,8 @@ brew "axel"
 brew "awscli"
 brew "kubectl"
 brew "kubectx"
+tap "jlesquembre/kubeprompt", "https://github.com/jlesquembre/kubeprompt/"
+brew "kubeprompt"
 
 # EXPERIMENTAL
 # ------------
