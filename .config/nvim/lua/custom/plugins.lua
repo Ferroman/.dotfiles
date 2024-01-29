@@ -142,6 +142,24 @@ local plugins = {
     },
   },
   -- EXPERIMENTAL
+  -- obsidian notes, attempt 2
+  {
+    "epwalsh/obsidian.nvim",
+    lazy = false,
+    opts = {
+      workspaces = {
+        {
+          name = "!ObsidianVault",
+          path = "~/Documents/!ObsidianVault/",
+        },
+      },
+    },
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+  },
   -- reformat
   {
     "stevearc/conform.nvim",
