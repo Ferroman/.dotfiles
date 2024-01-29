@@ -50,11 +50,24 @@ context.work=project:work
 uda.priority.values=H,M,,L
 urgency.uda.priority.L.coefficient=0
 urgency.uda.priority..coefficient=1.8
+urgency.uda.priority.M.coefficient=3.9
+urgency.uda.priority.H.coefficient=6.0
+urgency.blocking.coefficient=6.0
+
+urgency.user.tag.b.healthy.coefficient=4
+urgency.user.tag.b.great.rel.coefficient=3
+urgency.user.tag.b.organized.coefficient=2
+urgency.user.tag.b.significant.field.coefficient=1
+urgency.user.tag.b.great.dev.coefficient=1
+urgency.user.tag.b.great.devops.coefficient=1
+urgency.user.tag.b.great.hardware.coefficient=1
+urgency.user.tag.b.prep.draft.coefficient=1
+urgency.user.tag.b.war.help.coefficient=1
 
 #Reformat columns and hide annotations
 report.next.columns=id,urgency,description.count,due.relative,until.remaining,entry.age,depends,priority,project,tags,recur,scheduled.countdown
 report.next.labels=ID,Urg,Description,Due,Until,Active,Deps,P,Project,Tag,Recur,S           
-context=home
+context=work
 
 # Bugwarrior UDAs
 uda.jiraissuetype.type=string
