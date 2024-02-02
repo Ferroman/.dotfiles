@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd /home/bf/Documents/!ObsidianVault || exit ; git add . ; git commit -m "obsidian:update" ; git push; cd - || exit

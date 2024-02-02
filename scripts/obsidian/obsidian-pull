@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd /home/bf/Documents/!ObsidianVault || exit ; git pull; cd - || exit
