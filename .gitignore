@@ -1,3 +1,4 @@
 .config/fish/.git
 .config/fish/conf.d
 .config/fish/fish_variables
+*.orig
