@@ -155,6 +155,7 @@ local plugins = {
         },
       },
       notes_subdir = "00 Inbox",
+      disable_frontmatter = true, -- disable adding header
     },
     dependencies = {
       -- Required.
