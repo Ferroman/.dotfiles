@@ -145,6 +145,7 @@ local plugins = {
   -- obsidian notes, attempt 2
   {
     "epwalsh/obsidian.nvim",
+    version = "*",
     lazy = false,
     opts = {
       workspaces = {
@@ -153,6 +154,7 @@ local plugins = {
           path = "~/Documents/!ObsidianVault/",
         },
       },
+      notes_subdir = "00 Inbox",
     },
     dependencies = {
       -- Required.

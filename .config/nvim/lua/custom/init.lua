@@ -4,4 +4,4 @@ vim.opt.spelllang = 'en_us'
 vim.opt.spell = true
 
 vim.opt.guifont = { "Iosevka Term:h20" }
-
+vim.opt.conceallevel = 2
