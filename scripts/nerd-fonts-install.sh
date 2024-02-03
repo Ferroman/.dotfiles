@@ -1,4 +1,4 @@
- curl -Lo NerdFontsSymbolsOnly.zip https://github.com/ryanoasis/nerd-fonts/releases/download/2.2.0-RC/NerdFontsSymbolsOnly.zip
+ curl -Lo NerdFontsSymbolsOnly.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/NerdFontsSymbolsOnly.zip
  unzip NerdFontsSymbolsOnly.zip
 
 sudo mkdir /usr/local/share/fonts/nerd-fonts-symbols/
