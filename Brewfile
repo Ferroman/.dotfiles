@@ -1,6 +1,8 @@
 # install latest shell and NeoVim
 brew "fish"
+
 brew "nvim"
+
 brew "whalebrew" # docker images as commands
 
 # better cat
@@ -32,6 +34,8 @@ brew "viddy"
 brew "vhs"
 # install download accelerator
 brew "axel"
+# install imagemagick
+brew "imagemagick"
 
 # temporary used
 # Control Android device
@@ -62,3 +66,9 @@ brew "circumflex"
 
 # modern file tree
 brew "erdtree"
+
+# install lua (to install magic rock for image support in nvim)
+brew "lua@5.1"
+brew "luarocks"
+# luarocks install magick --tree /home/linuxbrew/.linuxbrew/
+
