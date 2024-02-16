@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker run -d -p 8111:8080 plantuml/plantuml-server:jetty
