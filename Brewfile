@@ -36,6 +36,8 @@ brew "vhs"
 brew "axel"
 # install imagemagick
 brew "imagemagick"
+# cd replacement
+brew "zoxide"
 
 # temporary used
 # Control Android device
@@ -59,7 +61,7 @@ brew "nb"
 
 # pass to manage secrets in files instead of 1Password
 brew "pass"
-brew "browserpass"
+# brew "browserpass"
 
 # Hackernews in terminal with cfx
 brew "circumflex"
@@ -71,4 +73,5 @@ brew "erdtree"
 brew "lua@5.1"
 brew "luarocks"
 # luarocks install magick --tree /home/linuxbrew/.linuxbrew/
+# luarocks config lua_version 5.1
 
