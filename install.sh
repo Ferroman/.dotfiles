@@ -1,18 +1,17 @@
 #!/bin/bash
 
-echo "Install toolse with Homebrew"
 ./scripts/homebrew-install.sh
+
+echo "Install toolse with Homebrew"
 brew bundle
 
 echo "Link all configs"
 stow --target ~/ . 
 
-echo "Set fish as default shell"
-FILE="/etc/shells"
-if grep -q "fish" "$FILE"; then
-    echo "fish is already set"
-else
-    sudo echo "/home/linuxbrew/.linuxbrew/bin/fish" | tee /etc/shells
-    sudo chsh -s /home/linuxbrew/.linuxbrew/bin/fish "$USER"
-    chsh -s /home/linuxbrew/.linuxbrew/bin/fish
-fi
+./scripts/kitty-install.sh
+./scripts/fish-install.sh
+./scripts/fish-plugin-install.sh
+./scripts/hashicorp-repo-install.sh
+./scripts/1password-install.sh
+./scripts/iosevka-font-install.sh
+./scripts/nerd-fonts-install.sh
