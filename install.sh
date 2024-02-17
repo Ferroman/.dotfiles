@@ -1,7 +1,11 @@
 #!/bin/bash
 
+echo "Install toolse with Homebrew"
 ./scripts/homebrew-install.sh
 brew bundle
+
+echo "Link all configs"
+stow --target ~/ . 
 
 echo "Set fish as default shell"
 FILE="/etc/shells"
