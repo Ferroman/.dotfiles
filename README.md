@@ -1,6 +1,6 @@
 <div align="center">
 <h1>🔸.dotfiles</h1>
-My personal dotfiles that include an aesthetic and feature-rich neovim config
+My personal dotfiles that include an aesthetic and feature-rich neovim config and my personal color [theme](https://github.com/Ferroman/theme-bfrankovskyi)
 </div>
 
 ---
@@ -24,11 +24,13 @@ My personal dotfiles that include an aesthetic and feature-rich neovim config
 - [yq](https://github.com/mikefarah/yq) `jq` with cherries
 - [btop](https://github.com/aristocratos/btop) htop on steroids
 
-## Installation
+...and others, see [Brewfile](./Brewfile)
 
-Clone repo
+## Installation
 
 ```bash
 git clone git@github.com:Ferroman/.dotfiles.git --depth 1
 cd .dotfiles && ./install.sh
 ```
+
+It uses [GNU Stow](https://www.gnu.org/software/stow/) to create symlinks to the config files in system
