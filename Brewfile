@@ -3,11 +3,16 @@ brew "stow"
 
 # install latest shell and NeoVim
 brew "fish"
-
 brew "nvim"
 
 brew "whalebrew" # docker images as commands
 
+# search engine
+brew "ripgrep"
+# fuzzy search
+brew "fzf"
+# cURL
+brew "curl"
 # better cat
 brew "bat"
 # better git diffs

@@ -1,11 +1,5 @@
 kdiff3
-npm
-fish
-imagemagick
-containerd.io
-fdfind
+imagemagick:magick
+containerd.io:containerd
+fdfind:fd
 git
-jq
-fzf
-ripgrep
-curl
