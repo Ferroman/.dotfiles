@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd /home/bf/Documents/!ObsidianVault || exit; 
+git stash ;
+git pull ;
+git stash pop ;
+git add . ;
+git commit -m "obsidian:update" ;
+git push ;
+cd - || exit
