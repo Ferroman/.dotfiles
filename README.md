@@ -30,39 +30,5 @@ Clone repo
 
 ```bash
 git clone git@github.com:Ferroman/.dotfiles.git --depth 1
-cd .dotfiles
-```
-
-### Fonts Installation
-
-Install Iosevka fonts and symbols from [Nerd Fonts](https://www.nerdfonts.com/)
-
-```bash
-./install-iosevka.sh && ./install-nerd-fonts.sh
-```
-
-### Kitty
-
-```bash
-ln -s $(pwd)/.config/kitty/ ~/.config/kitty
-```
-
-Install kitty: 
-
-```bash
-curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-```
-
-set kitty as default terminal
-
-```bash
-sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /home/bohdanf/.local/kitty.app/bin/kitty 5
-sudo update-alternatives --config x-terminal-emulator
-```
-
-### Neovim
-
-```bash
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-brew install neovim && ln -s $(pwd)/.config/nvim/lua/custom/ ~/.config/nvim/lua/custom
+cd .dotfiles && ./install.sh
 ```
