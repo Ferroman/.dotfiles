@@ -1,3 +1,6 @@
+# install stow to set configs from .dotfiles
+brew "stow"
+
 # install latest shell and NeoVim
 brew "fish"
 
