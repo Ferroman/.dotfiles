@@ -67,7 +67,6 @@ urgency.user.tag.b.war.help.coefficient=1
 #Reformat columns and hide annotations
 report.next.columns=id,urgency,description.count,due.relative,until.remaining,entry.age,depends,priority,project,tags,recur,scheduled.countdown
 report.next.labels=ID,Urg,Description,Due,Until,Active,Deps,P,Project,Tag,Recur,S           
-context=work
 
 # Bugwarrior UDAs
 uda.jiraissuetype.type=string
@@ -95,3 +94,4 @@ report.gantt-complete.description=Output for Gantt generation
 report.gantt-complete.columns=uuid.short,entry,end,description.count
 report.gantt-complete.labels=
 report.gantt-complete.filter=status:completed
+context=home
