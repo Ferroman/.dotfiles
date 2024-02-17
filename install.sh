@@ -1,5 +1,7 @@
 #!/bin/bash
 
+./scripts/apt-tools-install.sh
+./scripts/nvchad-install.sh
 ./scripts/homebrew-install.sh
 
 echo "Install toolse with Homebrew"
