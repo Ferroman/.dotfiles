@@ -1,0 +1,15 @@
+# ignore git files
+\.git
+\.gitignore
+
+# ignore docs
+README.md
+
+# ignore Brew configs
+Brewfile
+Brewfile.lock.json
+
+# scripts
+packages
+scripts
+install.sh
