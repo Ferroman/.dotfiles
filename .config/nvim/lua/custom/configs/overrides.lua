@@ -113,7 +113,7 @@ M.nvimtree = {
 }
 
 M.gitsigns = {
-  current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_formatter = '<author>, <summary> - <author_time:%Y-%m-%d>',
 }
 
@@ -141,6 +141,57 @@ M.telescope = {
         scroll_speed = 1,
       },
     },
+}
+
+M.image = {
+    backend = "kitty",
+    integrations = {
+      markdown = {
+        enabled = true,
+        clear_in_insert_mode = false,
+        download_remote_images = true,
+        only_render_image_at_cursor = false,
+        filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+      },
+      neorg = {
+        enabled = false,
+        clear_in_insert_mode = false,
+        download_remote_images = true,
+        only_render_image_at_cursor = false,
+        filetypes = { "norg" },
+      },
+    },
+    max_width = nil,
+    max_height = nil,
+    max_width_window_percentage = nil,
+    max_height_window_percentage = 50,
+    window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
+    window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+    editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+    tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+    hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
+}
+
+M.obsidian = {
+  workspaces = {
+    {
+      name = "!ObsidianVault",
+      path = "~/Documents/!ObsidianVault/",
+    },
+  },
+  notes_subdir = "00 Inbox",
+  disable_frontmatter = true, -- disable adding header
+}
+
+M.leetcode = {
+  arg = "leetcode.nvim",
+  lang = "go",
+  image_support = true,
+  description = {
+      position = "left", ---@type lc.position
+      width = "60%", ---@type lc.size
+      show_stats = true, ---@type boolean
+  },
 }
 
 return M
