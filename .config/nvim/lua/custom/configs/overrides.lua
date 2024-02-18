@@ -17,7 +17,9 @@ M.treesitter = {
     "lua",
     "terraform",
     "go",
-    "hcl"
+    "hcl",
+    "json",
+    "yaml"
   },
   indent = {
     enable = true,
@@ -31,6 +33,7 @@ M.mason = {
   ensure_installed = {
     -- lua stuff
     "lua-language-server",
+    -- lint
     "stylua",
 
     -- web dev stuff
@@ -56,8 +59,11 @@ M.mason = {
     "shfmt",
     "shellcheck",
 
-    -- docs
-    "markdownlint",
+    -- docs lint
+    "vale",
+
+    -- yaml lint
+    "yamllint",
 
     -- go stuff
     "gopls",
@@ -109,6 +115,32 @@ M.nvimtree = {
 M.gitsigns = {
   current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
   current_line_blame_formatter = '<author>, <summary> - <author_time:%Y-%m-%d>',
+}
+
+M.telescope = {
+   defaults = {
+     mappings = {
+       n = {
+          ["<C-j>"] = function(...)
+            require("telescope.actions").preview_scrolling_down(...)
+          end,
+          ["<C-k>"] = function(...)
+            require("telescope.actions").preview_scrolling_up(...)
+          end,
+        },
+       i = {
+          ["<C-j>"] = function(...)
+            require("telescope.actions").preview_scrolling_down(...)
+          end,
+          ["<C-k>"] = function(...)
+            require("telescope.actions").preview_scrolling_up(...)
+          end,
+        },
+      },
+      layout_config = {
+        scroll_speed = 1,
+      },
+    },
 }
 
 return M

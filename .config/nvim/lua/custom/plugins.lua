@@ -30,7 +30,23 @@ local plugins = {
     "lewis6991/gitsigns.nvim",
     opts = overrides.gitsigns,
   },
+
+  {
+   "nvim-telescope/telescope.nvim",
+   opts = overrides.telescope
+  },
+
   -- Install plugins
+  -- save session automatically
+  {"tpope/vim-obsession"},
+
+  -- keep different session per directory
+  {
+    "dhruvasagar/vim-prosession",
+    dependencies = {"tpope/vim-obsession"},
+    lazy = false
+  },
+
   -- git commands support
   {
     "tpope/vim-fugitive",
@@ -40,14 +56,13 @@ local plugins = {
     end,
   },
 
-  -- save session automatically
-  {"tpope/vim-obsession"},
-
-  -- keep different session per directory
+  -- search and replace
   {
-    "dhruvasagar/vim-prosession",
-    dependencies = {"tpope/vim-obsession"},
-    lazy = false
+    "nvim-pack/nvim-spectre",
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+    },
   },
 
   -- save files automatically on mode change
@@ -75,6 +90,15 @@ local plugins = {
     lazy = false -- enabled by default for all files
   },
 
+  -- Linter
+  {
+    "mfussenegger/nvim-lint",
+    event = "VeryLazy",
+    config = function()
+      require "custom.configs.lint"
+    end,
+  },
+
   -- Neovim lsp enhance plugin
   {
     "glepnir/lspsaga.nvim",
@@ -86,7 +110,7 @@ local plugins = {
         },
         ui = {
           title = true,
-          code_action = ""
+          code_action = "!"
         }
       })
     end,
@@ -96,51 +120,16 @@ local plugins = {
       {"nvim-treesitter/nvim-treesitter"}
     }
   },
+
   -- render diagnostics using virtual lines
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-     event = "LspAttach",
+     event = "BufWinEnter",
      config = function()
        require("lsp_lines").setup()
      end,
   },
-  -- fuzzy finder
-  {
-   "nvim-telescope/telescope.nvim",
-   opts = {
-     defaults = {
-       mappings = {
-         n = {
-            ["<C-j>"] = function(...)
-              require("telescope.actions").preview_scrolling_down(...)
-            end,
-            ["<C-k>"] = function(...)
-              require("telescope.actions").preview_scrolling_up(...)
-            end,
-          },
-         i = {
-            ["<C-j>"] = function(...)
-              require("telescope.actions").preview_scrolling_down(...)
-            end,
-            ["<C-k>"] = function(...)
-              require("telescope.actions").preview_scrolling_up(...)
-            end,
-          },
-        },
-        layout_config = {
-          scroll_speed = 1,
-        },
-      },
-    },
-   },
-  -- search and replace
-  {
-    "nvim-pack/nvim-spectre",
-    dependencies = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-    },
-  },
+
   -- EXPERIMENTAL
   -- obsidian notes, attempt 2
   {
