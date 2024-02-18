@@ -5,3 +5,5 @@ vim.opt.spell = true
 
 vim.opt.guifont = { "Iosevka Term:h20" }
 vim.opt.conceallevel = 2
+
+vim.opt.shell = "/home/linuxbrew/.linuxbrew/bin/fish"
