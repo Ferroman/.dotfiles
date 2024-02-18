@@ -6,7 +6,7 @@
 * [Mason](https://github.com/williamboman/mason.nvim) used to install language-specific LSP servers
 * [treesitter](https://github.com/nvim-treesitter/nvim-treesitter) for syntax highlighting
     * Configuration: ./configs/overrides.lua
-* Enabled git blame on line using gitsigns
+* Enabled git blame on line using `gitsigns`
 * fugitive to work with git changes
 * LSP config is here: ./configs/lspconfig.lua
     * virtual lines used to display errors
