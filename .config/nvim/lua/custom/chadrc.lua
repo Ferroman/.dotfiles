@@ -17,7 +17,7 @@ M.ui = {
       -- show cursor position instead of Vim mode
       modules[1] = (function()
           local r,c = unpack(vim.api.nvim_win_get_cursor(0))
-          return string.format('%-3s|%-3s',r, c)
+          return string.format('%-3s',c)
       end)()
 
       -- table.insert(
