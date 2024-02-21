@@ -1,7 +1,7 @@
 # Custom and important key maps
 
-| KEY        | Action            |
-|------------| ----------------- |
+| KEY          | Action            |
+|--------------| ----------------- |
 | \<space\>    | leader            |
 | \<leader\>ch | cheat sheet       |
 | \<leader\>wK | help key mappings |
@@ -25,8 +25,8 @@ I recommend to use left palm edge to press \<ctrl\>
 
 ## Visual features
 
-| KEY        | Action (normal mode)          | Action (insert mode) |
-|------------| ----------------------------- | -------------------- |
+| KEY          | Action (normal mode)          | Action (insert mode) |
+|--------------| ----------------------------- | -------------------- |
 | \<leader\>n  |  toggle line numbers          | --                   |
 | \<leader\>rn |  toggle relative line numbers | --                   |
 | \<leader\>th |  select theme                 | --                   |
@@ -37,20 +37,20 @@ Works in tree panel
 
 | KEY        | Action                  |
 |------------| ----------------------- |
-| \<ctrl\>n    | togle file tree         |
+| \<ctrl\>n  | togle file tree         |
 | a          | add file/directory      |
 | d          | delete file/directory   |
 | r          | rename file/directory   |
 | o          | open in buffer (select) |
-| \<ctrl\>x    | open horisontal split   |
-| \<ctrl\>v    | open vertical split     |
+| \<ctrl\>x  | open horisontal split   |
+| \<ctrl\>v  | open vertical split     |
 | g?         | key mappings help       |
 
 
 ## Telescope search
 
-| KEY        | Action                      |
-|------------| --------------------------- |
+| KEY          | Action                      |
+|--------------| --------------------------- |
 | \<leader\>fs |  search word under cursor   |
 | \<leader\>fc |  search in commit titles    |
 | \<leader\>fg |  live grep everywhere       |
@@ -61,12 +61,12 @@ Works in tree panel
 | KEY            | Action                    |
 |--------------- | ------------------------- |
 | K              | show documentation        |
-| \<leader\>lo     | outline panel toggle      |
+| \<leader\>lo   | outline panel toggle      |
 | gf             | show mentions tree        |
 | ]e             | go to next error          |
 | [e             | go to previous error      |
 | gr             | rename symbol             |
-| \<leader\>ca     | show code actions         |
+| \<leader\>ca   | show code actions         |
 | gt             | type definition           |
 | gD             | go to declaration         |
 | GD             | preview declaration popup |
@@ -74,11 +74,11 @@ Works in tree panel
 
 ## Code and Git
 
-| KEY        | Action                  |
-|------------| ----------------------- |
+| KEY          | Action                  |
+|--------------| ----------------------- |
 | \<leader\>/  | toggle comment          |
-| ]c         | jump to next change     |
-| [c         | jump to previous change |
+| ]c           | jump to next change     |
+| [c           | jump to previous change |
 | \<leader\>ph | preview change          |
 | \<leader\>rh | reset change            |
 | \<leader\>gb | blame line              |
@@ -86,8 +86,8 @@ Works in tree panel
 
 ## Terminal
 
-| KEY     | Action                     |
-|---------| -------------------------- |
+| KEY       | Action                     |
+|-----------| -------------------------- |
 | \<alt\>i  | toggle floating terminal   |
 | \<alt\>h  | toggle horisontal terminal |
 | \<alt\>v  | toggle vertical terminal   |
