@@ -13,6 +13,22 @@ M.ui = {
 
   statusline = {
     theme = "vscode_colored", -- default/vscode/vscode_colored/minimal
+    overriden_modules = function(modules)
+      -- show cursor position instead of Vim mode
+      modules[1] = (function()
+          local r,c = unpack(vim.api.nvim_win_get_cursor(0))
+          return string.format('%-3s|%-3s',r, c)
+      end)()
+
+      -- table.insert(
+      --   modules,
+      --   2,
+      --   (function()
+      --     local r,c = unpack(vim.api.nvim_win_get_cursor(0))
+      --     return string.format('%s|%s',r, c)
+      --   end)()
+      -- )
+    end,
   },
 
   -- disable custom tabs
