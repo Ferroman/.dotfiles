@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# Check if a namespace argument is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <namespace>"
+  exit 1
+fi
+
+# Use the first argument as the namespace
+NAMESPACE="$1"
+
+# Other variables
+PG_SERVICE="postgresql"
+PG_SERVICE_PORT=5432  # The port PostgreSQL service is exposed on
+PGADMIN_NAME="my-pgadmin"
+PGADMIN_PORT=80
+PGADMIN_DEFAULT_EMAIL="local@local.com"
+PGADMIN_DEFAULT_PASSWORD="local"
+PGADMIN_IMAGE="dpage/pgadmin4"
+
+# Extract the password from the Kubernetes secret
+# The secret is assumed to be base64 encoded and stored under the key 'postgres-password'
+POSTGRES_PASSWORD=$(kubectl -n "$NAMESPACE" get secret postgres-password-file -o jsonpath='{.data.postgres-password}' | base64 --decode)
+if [ -z "$POSTGRES_PASSWORD" ]; then
+    echo "Failed to extract PostgreSQL password from secret."
+    exit 1
+fi
+
+echo "Extracted PostgreSQL password from secret."
+echo $POSTGRES_PASSWORD | xsel
+echo "Added to the selection"
+
+# Start port-forwarding in the background
+kubectl -n "$NAMESPACE" port-forward service/"$PG_SERVICE" $PG_SERVICE_PORT:$PG_SERVICE_PORT &
+PF_PID=$!
+echo "Port-forwarding PID: $PF_PID"
+
+# Check for an existing pgAdmin4 container and remove it if it exists
+EXISTING_CONTAINER=$(docker ps -aq -f name=^/"$PGADMIN_NAME"$)
+if [ ! -z "$EXISTING_CONTAINER" ]; then
+    echo "Removing existing pgAdmin4 container..."
+    docker rm -f "$PGADMIN_NAME"
+fi
+
+# Run pgAdmin4 container
+echo "Starting pgAdmin4 container..."
+docker run --network "host" --name "$PGADMIN_NAME" -p "$PGADMIN_PORT":80 \
+    -e "PGADMIN_DEFAULT_EMAIL=$PGADMIN_DEFAULT_EMAIL" \
+    -e "PGADMIN_DEFAULT_PASSWORD=$PGADMIN_DEFAULT_PASSWORD" -d "$PGADMIN_IMAGE"
+
+echo "Waiting for pgAdmin4 to start..."
+sleep 5
+
+# At this point, you would need to configure pgAdmin4 to connect to your database automatically.
+# pgAdmin4 Docker does not support auto-configuration via environment variables for database servers.
+# You would typically need to log into pgAdmin4 and set up the connection manually or
+# use a custom script to modify pgAdmin4's internal files to set up the connection.
+
+# Open pgAdmin4 in the default web browser
+echo "Opening pgAdmin4 in the default web browser..."
+xdg-open "http://localhost:$PGADMIN_PORT"
+
+# Cleanup on exit
+function cleanup {
+    echo "Stopping port-forwarding..."
+    kill "$PF_PID"
+    echo "Stopping pgAdmin4 container..."
+    docker stop "$PGADMIN_NAME"
+    echo "Cleanup done."
+}
+trap cleanup EXIT
+
+echo "Press Ctrl+C to stop"
+while true; do sleep 1; done
