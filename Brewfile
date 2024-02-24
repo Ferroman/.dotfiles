@@ -83,3 +83,4 @@ brew "luarocks"
 # luarocks install magick --tree /home/linuxbrew/.linuxbrew/
 # luarocks config lua_version 5.1
 
+brew "entr"
