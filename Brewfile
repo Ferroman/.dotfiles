@@ -24,7 +24,6 @@ brew "watson"
 # task management (taskwarrior)
 brew "task"
 # various languages versions management
-brew "asdf"
 brew "mise"
 # YAML, JSON and XML processor like jq
 brew "yq"

@@ -3,3 +3,5 @@ if status is-interactive
 end
 
 zoxide init fish | source
+pyenv init - | source
+/home/linuxbrew/.linuxbrew/bin/mise activate fish | source
