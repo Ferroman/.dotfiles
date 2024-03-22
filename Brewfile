@@ -84,3 +84,4 @@ brew "luarocks"
 # luarocks config lua_version 5.1
 
 brew "entr"
+brew "rename"
