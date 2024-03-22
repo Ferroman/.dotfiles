@@ -1,0 +1,7 @@
+#!/bin/bash
+page=1
+while links=($(curl -H "Authorization: token ${GHTOKEN}" -s "https://api.github.com/orgs/${ORG}/repos?per_page=100&page=${page}" | jq -rc '.[] | {ssh_url} | .ssh_url'));  [[ "$links" ]]
+do
+    GIT_TERMINAL_PROMPT=0 parallel -j4 git clone --depth=1 {} ::: "${links[@]}"
+    ((++page))
+done
