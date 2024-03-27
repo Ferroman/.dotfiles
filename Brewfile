@@ -85,3 +85,5 @@ brew "luarocks"
 
 brew "entr"
 brew "rename"
+
+brew "parallel"
