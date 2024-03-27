@@ -48,20 +48,21 @@ context.home=project.hasnt:work
 context.work=project:work
 
 uda.priority.values=H,M,,L
-urgency.uda.priority.L.coefficient=0
-urgency.uda.priority..coefficient=1.8
-urgency.uda.priority.M.coefficient=3.9
+urgency.uda.priority.L.coefficient=-2
+urgency.uda.priority..coefficient=0
+urgency.uda.priority.M.coefficient=2
 urgency.uda.priority.H.coefficient=6.0
 urgency.blocking.coefficient=6.0
+urgency.uda.project.work.CINF.coefficient=1
 
 urgency.user.tag.b.healthy.coefficient=4
 urgency.user.tag.b.great.rel.coefficient=3
 urgency.user.tag.b.organized.coefficient=2
-urgency.user.tag.b.significant.field.coefficient=1
-urgency.user.tag.b.great.dev.coefficient=1
-urgency.user.tag.b.great.devops.coefficient=1
-urgency.user.tag.b.great.hardware.coefficient=1
-urgency.user.tag.b.prep.draft.coefficient=1
+urgency.user.tag.b.significant.field.coefficient=1.5
+urgency.user.tag.b.great.dev.coefficient=1.0
+urgency.user.tag.b.great.devops.coefficient=1.2
+urgency.user.tag.b.great.hardware.coefficient=1.0
+urgency.user.tag.b.prep.draft.coefficient=1.5
 urgency.user.tag.b.war.help.coefficient=1
 
 #Reformat columns and hide annotations
@@ -94,4 +95,4 @@ report.gantt-complete.description=Output for Gantt generation
 report.gantt-complete.columns=uuid.short,entry,end,description.count
 report.gantt-complete.labels=
 report.gantt-complete.filter=status:completed
-context=home
+context=work
