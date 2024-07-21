@@ -19,8 +19,6 @@ brew "bat"
 brew "git-delta"
 # modern top
 brew "btop"
-# time tracking 
-brew "watson"
 # task management (taskwarrior)
 brew "task"
 # various languages versions management
@@ -36,8 +34,6 @@ brew "dtrx"
 brew "jdupes"
 # working with media from CLI
 brew "ffmpeg"
-# modern watch command
-brew "viddy"
 # record terminal as gif
 brew "vhs"
 # install download accelerator
@@ -65,7 +61,7 @@ brew "kubeprompt"
 brew "ranger"
 
 # terminal note taking
-brew "nb"
+# brew "nb"
 
 # pass to manage secrets in files instead of 1Password
 brew "pass"
