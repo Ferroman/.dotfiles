@@ -15,5 +15,5 @@ stow --target ~/ .
 ./scripts/fish-plugin-install.sh
 ./scripts/hashicorp-repo-install.sh
 ./scripts/1password-install.sh
-./scripts/iosevka-font-install.sh
-./scripts/nerd-fonts-install.sh
+#./scripts/iosevka-font-install.sh
+#./scripts/nerd-fonts-install.sh

@@ -95,4 +95,4 @@ report.gantt-complete.description=Output for Gantt generation
 report.gantt-complete.columns=uuid.short,entry,end,description.count
 report.gantt-complete.labels=
 report.gantt-complete.filter=status:completed
-context=work
+context=home

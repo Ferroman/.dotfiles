@@ -83,3 +83,4 @@ brew "entr"
 brew "rename"
 
 brew "parallel"
+brew "kind"

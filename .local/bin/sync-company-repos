@@ -1,0 +1,129 @@
+#!/bin/bash
+
+# Configuration
+DRY_RUN=false
+GITHUB_ORG=""
+LOCAL_REPOS_DIR=""
+ARCHIVED_REPOS_DIR="Archived"
+DELETED_REPOS_DIR="Deleted"
+
+# Function to display help
+show_help() {
+    echo "Usage: sync_repos.sh [options]"
+    echo ""
+    echo "Options:"
+    echo "  --dir <path>       Specify the path to the local repositories directory (required)"
+    echo "  --org <org_name>   Specify the GitHub organization (optional)"
+    echo "  --dry-run          Simulate the operations without making any changes (optional)"
+    echo "  --help             Display this help message and exit"
+}
+
+# Parse arguments
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --dry-run) DRY_RUN=true ;;
+        --org) GITHUB_ORG="$2"; shift ;;
+        --dir) LOCAL_REPOS_DIR="$2"; shift ;;
+        --help) show_help; exit 0 ;;
+        *) echo "Unknown parameter passed: $1"; show_help; exit 1 ;;
+    esac
+    shift
+done
+
+# Check if LOCAL_REPOS_DIR is set
+if [[ -z "$LOCAL_REPOS_DIR" ]]; then
+    echo "Error: Local repositories directory not specified. Use --dir to specify it."
+    show_help
+    exit 1
+fi
+
+# Ensure the archived directory exists
+if [[ $DRY_RUN == false && ! -d "$LOCAL_REPOS_DIR/$ARCHIVED_REPOS_DIR" ]]; then
+    mkdir "$LOCAL_REPOS_DIR/$ARCHIVED_REPOS_DIR"
+fi
+
+# Ensure the deleted directory exists
+if [[ $DRY_RUN == false && ! -d "$LOCAL_REPOS_DIR/$DELETED_REPOS_DIR" ]]; then
+    mkdir "$LOCAL_REPOS_DIR/$DELETED_REPOS_DIR"
+fi
+
+# Change to the local repositories directory
+cd "$LOCAL_REPOS_DIR" || { echo "Directory not found: $LOCAL_REPOS_DIR"; exit 1; }
+
+# Fetch list of repositories from GitHub
+if [[ -n $GITHUB_ORG ]]; then
+    REPOS=$(gh repo list "$GITHUB_ORG" --limit 500 --json name,isArchived --jq '.[] | {name: .name, isArchived: .isArchived}')
+else
+    REPOS=$(gh repo list --limit 500 --json name,isArchived --jq '.[] | {name: .name, isArchived: .isArchived}')
+fi
+
+# Get list of local repositories
+LOCAL_REPOS=$(ls -d $LOCAL_REPOS_DIR | grep -v $ARCHIVED_REPOS_DIR | grep -v DELETED_REPOS_DIR | cut -f1 -d'/')
+
+# Function to clone and switch to the main branch
+clone_and_switch_branch() {
+    REPO_NAME=$1
+
+    if [[ $DRY_RUN == true ]]; then
+        echo "Dry run: Cloning $REPO_NAME..."
+    else
+        echo "Cloning $REPO_NAME..."
+        if [[ -n $GITHUB_ORG ]]; then
+            gh repo clone "$GITHUB_ORG/$REPO_NAME"
+        else
+            gh repo clone "$REPO_NAME"
+        fi
+    fi
+
+    if [[ $DRY_RUN == true ]]; then
+        echo "Dry run: Switching $REPO_NAME to main branch..."
+    else
+        echo "Switching $REPO_NAME to main branch..."
+        cd $REPO_NAME
+        git fetch
+        git checkout main || echo "Main branch does not exist in $REPO_NAME"
+    fi
+    cd ..
+}
+
+# Loop through GitHub repositories and sync with local
+for REPO in $(echo "$REPOS" | jq -r '.name'); do
+    ARCHIVED=$(echo "$REPOS" | jq -r --arg name "$REPO" 'select(.name == $name) | .isArchived')
+    # echo $(ls -l $LOCAL_REPOS_DIR | grep "${REPO}")
+    if [[ ! -d "${LOCAL_REPOS_DIR}/${REPO}" ]]; then
+        if [[ $ARCHIVED == "false" ]]; then
+            clone_and_switch_branch $REPO
+        else
+            echo "Skipping archived repository $REPO."
+        fi
+    else
+        if [[ $ARCHIVED == "true" ]]; then
+            if [[ $DRY_RUN == true ]]; then
+                echo "Dry run: Moving $REPO to $ARCHIVED_REPOS_DIR."
+            else
+                echo "Moving $REPO to $ARCHIVED_REPOS_DIR."
+                mv "$REPO" "$ARCHIVED_REPOS_DIR"
+            fi
+        else
+            echo "$REPO already exists locally."
+            if [[ $DRY_RUN == true ]]; then
+                echo "Dry run: Switching $REPO to main branch..."
+            else
+                echo "Switching $REPO to main branch..."
+                cd $REPO
+                git fetch
+                git checkout develop || git checkout master || git checkout main
+            fi
+            cd ..
+        fi
+    fi
+done
+
+# Handle renamed repositories
+for LOCAL_REPO in $LOCAL_REPOS; do
+    if ! echo "$REPOS" | jq -r '.name' | grep -q -w "$LOCAL_REPO"; then
+        echo "$LOCAL_REPO might be renamed or deleted on GitHub."
+        # Add any custom logic to handle renamed repositories here
+        # mv "$LOCAL_REPO" "$DELETED_REPOS_DIR"
+    fi
+done
