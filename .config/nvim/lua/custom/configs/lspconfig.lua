@@ -4,7 +4,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "terraformls", "dockerls", "bashls", "jsonls", "gopls", "pyright", "solargraph", "biome", "tsserver"}
+local servers = { "terraformls", "dockerls", "bashls", "jsonls", "gopls", "pyright", "solargraph", "biome", "ts_ls"}
 
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
@@ -18,7 +18,7 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
   -- on_attach = function(client, bufnr)
   --   require("inlay-hints").on_attach(client, bufnr)
   -- end,
