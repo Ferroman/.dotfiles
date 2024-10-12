@@ -11,14 +11,8 @@ brew "whalebrew" # docker images as commands
 brew "ripgrep"
 # fuzzy search
 brew "fzf"
-# cURL
-brew "curl"
-# better cat
-brew "bat"
 # better git diffs
 brew "git-delta"
-# modern top
-brew "btop"
 # task management (taskwarrior)
 brew "task"
 # various languages versions management
@@ -28,24 +22,36 @@ brew "yq"
 # tools usage helper
 brew "tldr"
 brew "howdoi"
-# universal archive extractor
-brew "dtrx"
 # search and remove duplicate files
 brew "jdupes"
-# working with media from CLI
-brew "ffmpeg"
 # record terminal as gif
 brew "vhs"
 # install download accelerator
 brew "axel"
 # install imagemagick
 brew "imagemagick"
+
+# OS tools 
+brew "midnight-commander"
 # cd replacement
 brew "zoxide"
+# working with media from CLI
+brew "ffmpeg"
+# universal archive extractor
+brew "dtrx"
+# cURL
+brew "curl"
+# better cat
+brew "bat"
+# modern top
+brew "btop"
 
 # temporary used
 # Control Android device
 # brew "scrcpy"
+
+# home stuff
+brew "pdftk-java"
 
 # work stuff
 brew "awscli"
@@ -56,9 +62,6 @@ brew "kubeprompt"
 
 # EXPERIMENTAL
 # ------------
-
-# file manager
-brew "ranger"
 
 # terminal note taking
 # brew "nb"
@@ -74,7 +77,7 @@ brew "circumflex"
 brew "erdtree"
 
 # install lua (to install magic rock for image support in nvim)
-brew "lua@5.1"
+# brew "lua@5.1"
 brew "luarocks"
 # luarocks install magick --tree /home/linuxbrew/.linuxbrew/
 # luarocks config lua_version 5.1
@@ -83,4 +86,5 @@ brew "entr"
 brew "rename"
 
 brew "parallel"
+brew "lazydocker"
 brew "kind"
