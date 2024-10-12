@@ -42,7 +42,7 @@ hooks.location=~/.config/task/hooks
 
 color.blocking=black on gray21 # from default color15 (white) because is too contrast
 
-news.version=2.6.0
+news.version=3.1.0
 
 context.home=project.hasnt:work
 context.work=project:work
@@ -95,4 +95,4 @@ report.gantt-complete.description=Output for Gantt generation
 report.gantt-complete.columns=uuid.short,entry,end,description.count
 report.gantt-complete.labels=
 report.gantt-complete.filter=status:completed
-context=home
+context=work
