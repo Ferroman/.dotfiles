@@ -15,6 +15,7 @@ brew "fzf"
 brew "git-delta"
 # task management (taskwarrior)
 brew "task"
+brew "timewarrior"
 # various languages versions management
 brew "mise"
 # YAML, JSON and XML processor like jq
@@ -45,7 +46,7 @@ brew "curl"
 brew "bat"
 # modern top
 brew "btop"
-
+brew "ffind"
 # temporary used
 # Control Android device
 # brew "scrcpy"
