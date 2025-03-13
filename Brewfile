@@ -60,6 +60,7 @@ brew "kubectl"
 brew "kubectx"
 tap "jlesquembre/kubeprompt", "https://github.com/jlesquembre/kubeprompt/"
 brew "kubeprompt"
+brew "gh"
 
 # EXPERIMENTAL
 # ------------
