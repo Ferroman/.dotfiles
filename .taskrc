@@ -39,35 +39,142 @@ hooks.location=~/.config/task/hooks
 #include solarized-dark-256.theme
 #include solarized-light-256.theme
 #include no-color.theme
+#include bubblegum-256.theme
 
-color.blocking=black on gray21 # from default color15 (white) because is too contrast
+# color.blocking=black on color15 # from default color15 (white) because is too contrast
 
-news.version=3.1.0
+news.version=4.0.0
 
-context.home=project.hasnt:work
-context.work=project:work
+context.work=tag:work
+context.personal=project:home or project:family or project:productivity or project:war or project:personal
+context.war=project:war
+context.fsm=project:fsm
 
+# ========================================
+# Urgency framework
+# ========================================
+
+# --- external priority
+# when external factors demands to prioritize this task
+
+uda.priority.type=string
+uda.priority.label=Priority
 uda.priority.values=H,M,,L
-urgency.uda.priority.L.coefficient=-2
-urgency.uda.priority..coefficient=0
-urgency.uda.priority.M.coefficient=2
-urgency.uda.priority.H.coefficient=6.0
-urgency.blocking.coefficient=6.0
-urgency.uda.project.work.CINF.coefficient=1
 
-urgency.user.tag.b.healthy.coefficient=4
-urgency.user.tag.b.great.rel.coefficient=3
-urgency.user.tag.b.organized.coefficient=2
-urgency.user.tag.b.significant.field.coefficient=1.5
+urgency.uda.priority..coefficient=0
+urgency.uda.priority.L.coefficient=-2
+urgency.uda.priority.M.coefficient=+2
+urgency.uda.priority.H.coefficient=+6
+
+# ---- Consider effort
+# How hard or *mentally* taxing the task is, beyond just the clock time
+
+uda.effort.type=string
+uda.effort.label=Effort
+uda.effort.values=E,N,D  # or "Easy,Normal,Difficult"
+
+urgency.uda.effort.E.coefficient=1.0  # easy - faster
+urgency.uda.effort.N.coefficient=0.0  
+urgency.uda.effort.D.coefficient=-2.0 # difficult - later
+
+# ---- Consider impact
+# Will it benefit many people, improve multiple areas, or unlock further progress
+# Questions to ask:
+# - If I skip this task, what are the consequences?
+# - Will doing this create a new capability or opportunity?
+# - How many people or future tasks does this help/unlock?
+
+uda.impact.type=string
+uda.impact.label=Impact
+uda.impact.values=H,M,L  # or "High,Medium,Low"
+
+urgency.uda.impact.H.coefficient=4.0 # 
+urgency.uda.impact.M.coefficient=2.0 # still matters, but less than a truly high-impact task
+urgency.uda.impact.L.coefficient=0.0
+urgency.blocking.coefficient=6.0
+
+# ---- estimate “Time Cost”
+# Use "negative estimation":
+# ask yourself: "would it be 15min/30min/... Enough time to do it"
+# then when you think "maybe" double the number
+
+uda.est.type=string
+uda.est.label=TimeEstimate
+uda.est.values=15m,30m,1h,2h,4h,8h,2d
+
+# Give short tasks a small positive bump
+
+urgency.uda.est.15m.coefficient=1.0
+urgency.uda.est.30m.coefficient=0.5
+urgency.uda.est.1h.coefficient=0.0
+urgency.uda.est.2h.coefficient=0.0
+urgency.uda.est.4h.coefficient=-1.0
+urgency.uda.est.8h.coefficient=-1.5
+urgency.uda.est.2d.coefficient=-3.0
+
+# --- is it fun
+
+uda.fun.type=string
+uda.fun.label=Fun
+uda.fun.values=H,M,L
+
+urgency.uda.fun.High.coefficient=-0.2
+urgency.uda.fun.Medium.coefficient=0.0
+urgency.uda.fun.Low.coefficient=1.0 # bump boring stuff 
+
+# ---------------------------------------
+# Tagging framework
+# ---------------------------------------
+
+urgency.user.tag.b.healthy.coefficient=3
+urgency.user.tag.b.great.rel.coefficient=2
+urgency.user.tag.b.significant.field.coefficient=2
+urgency.user.tag.b.great.devops.coefficient=2
+urgency.user.tag.b.organized.coefficient=1.5
 urgency.user.tag.b.great.dev.coefficient=1.0
-urgency.user.tag.b.great.devops.coefficient=1.2
 urgency.user.tag.b.great.hardware.coefficient=1.0
-urgency.user.tag.b.prep.draft.coefficient=1.5
+urgency.user.tag.b.prep.draft.coefficient=1
 urgency.user.tag.b.war.help.coefficient=1
 
+urgency.user.tag.d.time.mgmt.coefficient=1
+urgency.user.tag.d.project.plan.coefficient=0.5
+urgency.user.tag.d.help.family=0.5
+urgency.user.tag.d.kids=0.4
+urgency.user.tag.d.endurance=0.4
+urgency.user.tag.d.org.habits.coefficient=0.3
+urgency.user.tag.d.sw.design.coefficient=0.3
+urgency.user.tag.d.writing.coefficient=0.3
+urgency.user.tag.d.org.tooling.coefficient=0.2
+urgency.user.tag.d.soldering=0.2
+urgency.user.tag.d.coverage.coefficient=0.1
+urgency.user.tag.d.comm.coefficient=0.1
+urgency.user.tag.d.algo.coefficient=0.1
+urgency.user.tag.d.workspace.coefficient=0.1
+urgency.user.tag.d.prog.lang.coefficient=0.1
+urgency.user.tag.d.dev.tooling.coefficient=0.1
+urgency.user.tag.d.test.write.coefficient=0.1
+urgency.user.tag.d.tooling.adv.coefficient=0.1
+urgency.user.tag.d.os.network.coefficient=0.1
+urgency.user.tag.d.sys.design.coefficient=0.1
+urgency.user.tag.d.cloud.coefficient=0.1
+urgency.user.tag.d.hw.sw.tooling=0.1
+urgency.user.tag.d.hw.tooling=0.1
+urgency.user.tag.d.hw.dev=0.1
+urgency.user.tag.d.circuits=0.1
+urgency.user.tag.d.help.friends=0.1
+urgency.user.tag.d.psych.help=0.1
+urgency.user.tag.d.martial.arts=0.1
+urgency.user.tag.d.orientation=0.1
+urgency.user.tag.d.mil.gen.knowledge=0.1
+urgency.user.tag.d.mil.equip.prep=0.1
+urgency.user.tag.d.fpv=0.1
+urgency.user.tag.d.war.help=0.1
+urgency.user.tag.d.war.tools=0.1
+urgency.user.tag.d.war.knowledge.help=0.1
+
 #Reformat columns and hide annotations
-report.next.columns=id,urgency,description.count,due.relative,until.remaining,entry.age,depends,priority,project,tags,recur,scheduled.countdown
-report.next.labels=ID,Urg,Description,Due,Until,Active,Deps,P,Project,Tag,Recur,S           
+report.next.columns=id,fun,urgency,description.count,due.relative,until.remaining,entry.age,depends,priority,impact,effort,est,project,tags,recur,scheduled.countdown
+report.next.labels=ID,Fun,Urg,Description,Due,Until,Active,Deps,P,I,Eff,Est,Project,Tag,Recur,S           
 
 # Bugwarrior UDAs
 uda.jiraissuetype.type=string
@@ -90,9 +197,27 @@ uda.jirastatus.type=string
 uda.jirastatus.label=Jira Status
 uda.jirasubtasks.type=string
 uda.jirasubtasks.label=Jira Subtasks
+
 # END Bugwarrior UDAs
 report.gantt-complete.description=Output for Gantt generation
 report.gantt-complete.columns=uuid.short,entry,end,description.count
 report.gantt-complete.labels=
 report.gantt-complete.filter=status:completed
-context=work
+
+include ~/.taskrc-local
+
+recurrence=on
+uda.reviewed.type=date
+uda.reviewed.label=Reviewed
+report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
+report._reviewed.columns=uuid
+report._reviewed.sort=reviewed+,modified+
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+
+# Custom coloring
+color.blocking=rgb500
+color.due=bold
+color.blocked=color8
+color.tagged=
+color.overdue=underline bold
+color.uda.priority.H=bright
