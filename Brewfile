@@ -9,6 +9,7 @@ brew "whalebrew" # docker images as commands
 
 # search engine
 brew "ripgrep"
+brew "rga"
 # fuzzy search
 brew "fzf"
 # better git diffs
@@ -21,7 +22,7 @@ brew "mise"
 # YAML, JSON and XML processor like jq
 brew "yq"
 # tools usage helper
-brew "tldr"
+brew "tealdeer"
 brew "howdoi"
 # search and remove duplicate files
 brew "jdupes"
@@ -31,9 +32,15 @@ brew "vhs"
 brew "axel"
 # install imagemagick
 brew "imagemagick"
+# better df
+brew "dysk"
+# calendars
+brew "khal"
+brew "vdirsyncer"
 
 # OS tools 
 brew "midnight-commander"
+brew "yazi"
 # cd replacement
 brew "zoxide"
 # working with media from CLI
@@ -42,11 +49,21 @@ brew "ffmpeg"
 brew "dtrx"
 # cURL
 brew "curl"
+# XH 
+brew "xh"
 # better cat
 brew "bat"
 # modern top
 brew "btop"
+brew "bottom" # btm
+# file finder
 brew "ffind"
+# du on steroids
+brew "dust"
+# prompt on steroids 
+brew "starship"
+# clean up project
+brew "kondo"
 # temporary used
 # Control Android device
 # brew "scrcpy"
@@ -55,12 +72,27 @@ brew "ffind"
 brew "pdftk-java"
 
 # work stuff
+# benchmarking
+brew "hyperfine"
+# AWS CLI
 brew "awscli"
+# k8s CLI
 brew "kubectl"
+# select k8s context interactively
 brew "kubectx"
+# show and keep current context instead of changing it globally
 tap "jlesquembre/kubeprompt", "https://github.com/jlesquembre/kubeprompt/"
 brew "kubeprompt"
+# GitHub CLI
 brew "gh"
+# Use SQL for file system queries
+brew "fselect"
+# CLI task runner definded by markdown file
+brew "mask"
+# Terminal presentations on markdown
+brew "presenterm"
+# cli to tork with serial ports
+brew "bootterm"
 
 # EXPERIMENTAL
 # ------------

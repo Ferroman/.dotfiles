@@ -1,0 +1,173 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# format = """$all\
+# $cmd_duration${custom.current_time}$directory$symbol$character
+# """
+
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$pijul_channel\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$nats\
+$direnv\
+$env_var\
+$mise\
+$crystal\
+$custom\
+$sudo\
+$directory\
+$line_break\
+$cmd_duration\
+$jobs\
+$battery\
+$time\
+$os\
+$container\
+$netns\
+$shell\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$status\
+$character"""
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+error_symbol = "[✗](bold red)"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[cmd_duration]
+format = "\\[[$duration]($style)\\]"
+
+[directory]
+truncate_to_repo = false
+
+[mise]
+disabled = true
+
+[time]
+disabled = false
+format = "\\[[$time]($style)\\] "
+
+[status]
+disabled = false
+format = "\\([$status]($style)\\) "
+
+[terraform]
+symbol = '󱁢 '
+detect_extensions = ['tf', 'tfplan', 'tfstate', 'hcl']
+format = "\\[[$symbol:$version]($style)\\]"
+
+[kubernetes]
+disabled = false
+format = '[$symbol$context( \($namespace\))]($style) '
+
+[golang]
+symbol = ' '
+format = "\\[[$symbol:($version)]($style)\\] "
+
+[nodejs]
+format = "\\[[$symbol:($version)]($style)\\] "
+
+[python]
+symbol = ' '
+format = "\\[[$symbol:($version)]($style)\\] "
+
+[aws]
+symbol = '󰸏 '
+format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+
+[gcloud]
+symbol = '󱇶 '
+format = '[$symbol$account(@$domain)(\($region\))]($style) '
+detect_env_vars = ['']
+
+[custom.git_config_email]
+description = "Output the current git user's configured email address."
+command = "git config user.email"
+symbol = ' '
+format = "[$symbol:($output)]($style) "
+# Only when inside git repository
+when = "git rev-parse --is-inside-work-tree >/dev/null 2>&1"
+style = "text"
+
+[custom.current_time]
+description = "Output the current time"
+command = "date +%H:%M"
+format = "[$output]($style)"
+style = "text"
